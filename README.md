@@ -10,6 +10,8 @@ A bunch of utilities for ServiceNow Developers. Since I don't have access to the
 
 - Source Code for [My VSCode Extension](https://marketplace.visualstudio.com/items?itemName=OosukeRen.servicenow-tables-intellisense)
 
+- Localhost html map of all tables and fields, integration with the extension so that if you rightclick on a table name you get redirected to the map of the table to see all its fields, and etc.
+
 - Node.js module for ServiceNow Queries with support for the preexisting intellisens
 
 - Update for the extension for support for intellisense for ALL instance scopes, and their script includes, eventually with support for documentation(so that you even get any comments for any methods under them too).
