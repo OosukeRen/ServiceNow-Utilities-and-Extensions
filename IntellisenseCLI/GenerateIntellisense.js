@@ -11,7 +11,9 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-const methodFunc = `
+// Everything that is constant from the generated .d.ts file and isn't affected by order of definition is written here
+// Some types might be shortened for file size compression or obfuscation as previously I had to demotivate people from reverse engineering my extension so as to bring some sense of security to everything.
+const TYPES_CONSTANT = `
 type no = '>' | '>=' | '<' | '<=';
 type so = 'IN'|'NOT IN'|'STARTSWITH'|'ENDSWITH'|'CONTAINS'|'DOES NOT CONTAIN'|'INSTANCEOF'
 type mut = '=' | '!='
@@ -1724,10 +1726,6 @@ interface map { }
 let projectPath = path.resolve();
 let libPath = path.resolve(`${projectPath}\\lib\\dts\\`);
 
-{
-    await fs.mkdir(libPath, {recursive: true});
-}
-
 let dtsFilePath = path.join(libPath, 'con.d.ts');
 
 const progress = {
@@ -1739,6 +1737,10 @@ const progress = {
         progress.reset();
         process.stdout.write(`${message}\n`);
     }
+}
+
+const directoryPrerequisites = async () => {
+    await fs.mkdir(libPath, {recursive: true});
 }
 
 async function getIntellisense (instanceUrl, user, pwd) {
@@ -1824,7 +1826,7 @@ async function getIntellisense (instanceUrl, user, pwd) {
         })
         
         .map(async (tb, i) => {
-    
+            // Stagger each batch by 250ms to smooth request bursts and avoid 429s
             await delay(250*i);
     
             let link = api("", tb).allFields;
@@ -1921,7 +1923,7 @@ async function getIntellisense (instanceUrl, user, pwd) {
 		type om = ch | keyof nch | 'byLabel';
 		type o<tb> = keyof Omit<tb, om>;
         
-        ` + methodFunc;
+        ` + TYPES_CONSTANT;
     
         const fieldsByTable = {};
         let progressNumber = 0;
@@ -2027,7 +2029,11 @@ const getCredentials = async () => {
     return [instanceUrl, credentials.username, process.env.APP_PASSWORD]
 }
 
-{
+(async () => {
+    // Do any prerequisites in terms of folder/project structure if needed before initiation.
+    await directoryPrerequisites()
+    // Get credentials from instance.json and the passed password throught the CLI
     let credentials = await getCredentials();
+
     await getIntellisense(...credentials);
-}
+})()

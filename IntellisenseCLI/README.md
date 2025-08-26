@@ -20,6 +20,16 @@ either copy the JS and PS1 scripts to your directory OR copy them somewhere and 
 npm init --y
 ```
 
+### Then edit the package.json to add the following change 
+
+```
+{
+    ...,
+    type: "module",
+    ...
+}
+```
+
 ## 2. Create an <b> instance.json </b> file in your project root directory.
 
 ```
