@@ -1,0 +1,20 @@
+{
+  "name": "snow-intelligen",
+  "version": "1.0.0",
+  "description": "A Node.JS CLI to generate an intellisense file for tables and fields for GlideRecord queries and more.",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "snow-intelligen": "bin/ServiceNowTablesIntellisense.ps1"
+  },
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OosukeRen/ServiceNow-Utilities-and-Extensions.git",
+    "directory": "IntellisenseCLI"
+  },
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "Oosuke Ren",
+  "license": "BSD 2-Clause"
+}
