@@ -47,8 +47,12 @@ async function populate (formToPopulate, config) {
 };
 
 function isVisible(el) {
-  if (!el) return false;
+  if (!el) {
+    return false;
+  }
+
   const style = getComputedStyle(el);
+  
   return (
     style.display !== 'none' &&
     style.visibility !== 'hidden' &&
