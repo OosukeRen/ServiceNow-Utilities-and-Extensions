@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * Copyright 2025 (c) Oosuke Ren - oosukeren@gmail.com
  *
@@ -20,6 +22,8 @@ type mut = '=' | '!='
 type n_s = no | so | mut;
 
 interface m<tb> {/** Retrieves the underlying value of a field */
+query(): vv;
+next(): b;
 getValue(fieldName: tb): s;
 /** Adds a filter to return records based on a relationship in a related table */
 addJoinQuery<t extends tableNames>(joinTable: t, primaryField: tb, joinTableField: tables[t]['f']): q<t>;
