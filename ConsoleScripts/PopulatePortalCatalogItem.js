@@ -87,7 +87,7 @@ function exportForm () {
 function clickMultiRowVariableButton (variableName, buttonText) {
     Array.from($(`sp-sc-multi-row-element[id*=${variableName}] button`)).filter(button => {
         return button.textContent.includes(buttonText)
-    })[0].click;
+    })[0].click();
 }
 
 function submit () {
